@@ -1,12 +1,36 @@
 {
-  "name": "ngx-multi-date-picker-lib",
+  "name": "ngx-multi-date-picker",
   "version": "0.0.1",
+  "description": "A multi-date picker Angular library component.",
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tibinthomas/ngx-multi-date-picker.git"
+  },
+  "keywords": [
+    "angular",
+    "date-picker",
+    "multi-date",
+    "ng-zorro"
+  ],
   "peerDependencies": {
     "@angular/common": "^20.1.0",
-    "@angular/core": "^20.1.0"
+    "@angular/core": "^20.1.0",
+    "ng-zorro-antd": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "module": "fesm2022/ngx-multi-date-picker-lib.mjs",
+  "es2020": "fesm2022/ngx-multi-date-picker-lib.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./fesm2022/ngx-multi-date-picker-lib.mjs",
+      "default": "./fesm2022/ngx-multi-date-picker-lib.mjs"
+    }
+  }
 }
