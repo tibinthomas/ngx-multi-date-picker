@@ -1,0 +1,41 @@
+<div class="container">
+  <div
+    class="ant-select ant-select-show-search ant-select-multiple"
+    [class.ant-select-disabled]="isDisabled()"
+    [class.ant-select-focused]="isCalOpen()"
+  >
+    <nz-select-top-control
+      (click)="openDatePicker()"
+      class="ant-select-selector"
+      [listOfTopItem]="formattedSelectedDate()"
+      [open]="false"
+      [mode]="'tags'"
+      [placeHolder]="placeHolder()"
+      (deleteItem)="onClearingDates($event)"
+      [disabled]="isDisabled()"
+    >
+    </nz-select-top-control>
+    @if (isClearButtonVisible()) {
+      <nz-icon class="right-icon" nzType="close-circle" (click)="handleClear()" />
+    } @else {
+      <nz-icon class="right-icon" [nzType]="'calendar'" />
+    }
+  </div>
+
+  <nz-date-picker
+    [nzMode]="'date'"
+    [nzDateRender]="dateCellRender"
+    ngModel
+    (ngModelChange)="onSelectDate($any($event))"
+    [nzOpen]="isCalOpen()"
+    [nzShowToday]="false"
+    [nzDisabledDate]="disableFutureDatesFn"
+  >
+  </nz-date-picker>
+</div>
+
+<ng-template #dateCellRender let-current>
+  <div class="ant-picker-cell-inner" [class.selected-date]="isSelectedDate(current)">
+    {{ current.getDate() }}
+  </div>
+</ng-template>
