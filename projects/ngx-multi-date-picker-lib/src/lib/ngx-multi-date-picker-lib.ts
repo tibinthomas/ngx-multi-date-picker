@@ -183,29 +183,6 @@ export class NgxMultiDatePickerLib implements ControlValueAccessor {
     this.registerOnChangeFn(this.selectedDates());
   }
 
-  disableFutureDatesFn = (current: Date): boolean => {
-    if (!this.disableFutureDates()) return false;
-    if (!current) return false;
-
-    const now = new Date();
-    const nowInEST = new Date(
-      now.toLocaleString('en-US', { timeZone: 'America/New_York' })
-    );
-
-    const estDate = new Date(
-      nowInEST.getFullYear(),
-      nowInEST.getMonth(),
-      nowInEST.getDate()
-    );
-    const currentDate = new Date(
-      current.getFullYear(),
-      current.getMonth(),
-      current.getDate()
-    );
-
-    return currentDate > estDate;
-  };
-
   handleClear(): void {
     this.selectedDates.set([]);
     this.registerOnChangeFn(this.selectedDates());

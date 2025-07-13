@@ -1,63 +1,86 @@
-# NgxMultiDatePickerLib
+# ngx-multi-date-picker-lib
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
+A modern Angular component for selecting multiple dates, designed for seamless integration with Angular forms and built using NG-ZORRO UI components. Features include multi-date selection, tag display, disabling future dates (EST-aware), and full form compatibility.
 
-## Code scaffolding
+## Author
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Tibin Thomas
 
-```bash
-ng generate component component-name
-```
+## Features
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Select and manage multiple dates from a calendar popup
+- Display selected dates as removable tags
+- Optionally disable selection of future dates (EST timezone)
+- Integrates with Angular Reactive and Template-driven Forms
+- Built with [NG-ZORRO](https://ng.ant.design/) for a consistent UI
+- Keyboard navigation and click-outside handling for accessibility
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+## Installation
 
 ```bash
-ng build ngx-multi-date-picker-lib
+npm install ngx-multi-date-picker-lib ng-zorro-antd
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+> **Note:** Requires Angular 16+ and NG-ZORRO 17+ as peer dependencies.
 
-### Publishing the Library
+## Usage
 
-Once the project is built, you can publish your library by following these steps:
+### 1. Import the module
 
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/ngx-multi-date-picker-lib
-   ```
+```typescript
+import { NgxMultiDatePickerLib } from 'ngx-multi-date-picker-lib';
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+@NgModule({
+  imports: [NgxMultiDatePickerLib, ...],
+})
+export class AppModule {}
+```
 
-## Running unit tests
+### 2. Add the component to your template
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+```html
+<ngx-multi-date-picker [(ngModel)]="selectedDates" placeholder="Select Dates"></ngx-multi-date-picker>
+```
+
+- `[(ngModel)]` or `formControlName` binds the selected dates array (ISO date strings)
+- `placeholder` sets the input placeholder text
+
+## API
+
+| Input         | Type     | Default       | Description                    |
+| ------------- | -------- | ------------- | ------------------------------ |
+| `placeholder` | `string` | 'Select Date' | Placeholder text for the input |
+
+## Events
+
+- Standard Angular form events are supported via `ControlValueAccessor`.
+
+## Example
+
+```typescript
+selectedDates: string[] = [];
+```
+
+## Development
+
+- **Build the library:**
+  ```bash
+  ng build ngx-multi-date-picker-lib
+  ```
+- **Run unit tests:**
+  ```bash
+  ng test ngx-multi-date-picker-lib
+  ```
+
+## Publishing
+
+After building, publish from the `dist/ngx-multi-date-picker-lib` directory:
 
 ```bash
-ng test
+cd dist/ngx-multi-date-picker-lib
+npm publish
 ```
 
-## Running end-to-end tests
+## License
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT

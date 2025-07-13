@@ -16,9 +16,9 @@
     >
     </nz-select-top-control>
     @if (isClearButtonVisible()) {
-      <nz-icon class="right-icon" nzType="close-circle" (click)="handleClear()" />
+    <nz-icon class="right-icon" nzType="close-circle" (click)="handleClear()" />
     } @else {
-      <nz-icon class="right-icon" [nzType]="'calendar'" />
+    <nz-icon class="right-icon" [nzType]="'calendar'" />
     }
   </div>
 
@@ -29,13 +29,15 @@
     (ngModelChange)="onSelectDate($any($event))"
     [nzOpen]="isCalOpen()"
     [nzShowToday]="false"
-    [nzDisabledDate]="disableFutureDatesFn"
   >
   </nz-date-picker>
 </div>
 
 <ng-template #dateCellRender let-current>
-  <div class="ant-picker-cell-inner" [class.selected-date]="isSelectedDate(current)">
+  <div
+    class="ant-picker-cell-inner"
+    [class.selected-date]="isSelectedDate(current)"
+  >
     {{ current.getDate() }}
   </div>
 </ng-template>
