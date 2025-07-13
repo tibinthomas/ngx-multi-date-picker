@@ -39,7 +39,7 @@ const toLocalISOString = (date: Date): string => {
   );
 };
 @Component({
-  selector: 'lib-ngx-multi-date-picker-lib',
+  selector: 'ngx-multi-date-picker',
   imports: [
     FormsModule,
     NzSelectModule,
@@ -61,16 +61,20 @@ const toLocalISOString = (date: Date): string => {
   styleUrl: './ngx-multi-date-picker-lib.less',
 })
 export class NgxMultiDatePickerLib implements ControlValueAccessor {
-  datePickerRef = viewChild<NzDatePickerComponent>(NzDatePickerComponent);
+  datePickerRef = viewChild.required<NzDatePickerComponent>(
+    NzDatePickerComponent
+  );
 
   elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   datePipe = inject(DatePipe);
 
   disableFutureDates = input(true);
 
-  @HostListener('document:keydown.escape', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
-    this.isCalOpen.set(false);
+    if (event.key === 'Escape') {
+      this.isCalOpen.set(false);
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -132,7 +136,7 @@ export class NgxMultiDatePickerLib implements ControlValueAccessor {
 
   isSelectedDate(date: Date): boolean {
     return this.selectedDates().some((selectedDate) => {
-      return selectedDate.includes(toLocalISOString(date).split('T')[0]);
+      return selectedDate?.includes(toLocalISOString(date).split('T')[0]);
     });
   }
 
@@ -144,8 +148,10 @@ export class NgxMultiDatePickerLib implements ControlValueAccessor {
 
     this.isInternalUpdate = true;
 
-    this.datePickerRef().datePickerService.value = undefined;
-    this.datePickerRef().datePickerService.emitValue$.next();
+    if (this.datePickerRef()) {
+      this.datePickerRef().datePickerService.value = undefined as any;
+      this.datePickerRef().datePickerService.emitValue$.next();
+    }
 
     this.selectedDates.update((dates) => {
       const formattedDate = toLocalISOString(date).split('T')[0];

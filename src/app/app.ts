@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { NgxMultiDatePickerLib } from 'ngx-multi-date-picker-lib';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NgxMultiDatePickerLib, FormsModule, JsonPipe],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
 })
 export class App {
   protected readonly title = signal('ngx-multi-date-picker');
+
+  selectedDates = ['2023-10-01T00:00:00'];
 }
