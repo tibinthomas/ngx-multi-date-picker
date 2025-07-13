@@ -86,6 +86,35 @@
           }
         }
       }
+    },
+    "ngx-multi-date-picker-lib": {
+      "projectType": "library",
+      "root": "projects/ngx-multi-date-picker-lib",
+      "sourceRoot": "projects/ngx-multi-date-picker-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-multi-date-picker-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-multi-date-picker-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/ngx-multi-date-picker-lib/tsconfig.spec.json"
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": "94fbb31d-643c-43ce-9dc0-decc7d65094e"
   }
 }
